@@ -5,9 +5,9 @@ Developing a program in Python utilizing gspread API to streamline/automate task
 
 The following **core** functionality is completed:
 
-* [ x ] 
-* [ x ] 
-* [ x ] 
+* [  ] 
+* [  ] 
+* [  ] 
 
 The following **additional** features are in-progress:
 
@@ -33,4 +33,5 @@ Here is a sample of the current prototype of the application
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Challenges
+* 
