@@ -1,32 +1,3 @@
-
-# Problems with Development so far:
-#   1) Provide an error message if the text file is empty
-#   2) Change TextBox on Tkinter on successful submit
-#   3) Use Column Letter instead of Column #
-
-# Future Iterations:
-
-# Suggestions:
-#   1) Batch File (Is there a way to make it where a person that doesn't program can use it? .exe file fully contained app)
-#   2) Fuzzyfinder setup? (Regex may cause problems) dbn 
-#   3) Autocomplete
-#   4) onUpdate for textbox
-#   5) Error for non-integer values for some of the fields
-#   6) Code Refactoring
-#   7) Self-contained binaries
-
-# SOLVED:
-#   1) **FIXED** Try and catch needs to be implemented, and loop needs to continue going if name is not found
-#       a) **FIXED** Program crashes when name is end of list (Fix using continue?)
-#   2) Try and catch does not exist for opening file
-#   3) Name has to be exact spelling (this one would be difficult to fix because I would need machine learning)
-#   4) Name has to have exact same format (ex. Name cannot be all lowercase or uppercase)
-#   5) Create a friendly GUI and/or a BATCH File (Kivy)
-#   6) Create an output file for errors
-#   7) Clear textbox when submitting names for input.txt
-
-
-
 # Google Spreadsheet Libraries
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
