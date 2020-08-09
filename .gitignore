@@ -1,4 +1,5 @@
 .vscode/
+__pyc
 client_secret.json
 to_do_list.txt
 backup.txt

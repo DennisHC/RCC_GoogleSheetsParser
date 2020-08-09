@@ -36,7 +36,7 @@ root = Tk()
 root.title("UCI RCC Google Sheets Parser")
 
 # Clear/erase input.txt File
-fp = open("input.txt", "r+")
+fp = open("input.txt", "w+")
 fp.seek(0)
 fp.truncate()
 fp.close()
