@@ -5,12 +5,11 @@ from oauth2client.service_account import ServiceAccountCredentials
 # GUI Libraries
 from tkinter import *
 from tkinter import ttk
-#from tkinter.filedialog import asksaveasfilename
 
 # Regular Expressions Libary
 import re
 
-# file flush
+# File Flush
 import os 
 
 # My Libararies
@@ -32,22 +31,21 @@ client = gspread.authorize(creds)
 # Make sure you use the right name here.
 sheet = client.open(GOOGLE_SHEETS_FILENAME).sheet1
 
-### TKINTER Window
+# Initialize Tkinter GUI Window
 root = Tk()
 root.title("UCI RCC Google Sheets Parser")
 
-# Erase input.txt File
+# Clear/erase input.txt File
 fp = open("input.txt", "r+")
 fp.seek(0)
 fp.truncate()
 fp.close()
 
-# Tkinter Command Functions (onButtonPress)
+# Tkinter Command Functions
 def retrieve_spreadsheet_name(self, *args):
     global GOOGLE_SHEETS_FILENAME
     GOOGLE_SHEETS_FILENAME = spreadsheet_name.get()
     print(GOOGLE_SHEETS_FILENAME)
-
 
 def retrieve_cell_col(self, *args):
     global CELL_COL
@@ -57,6 +55,7 @@ def retrieve_cell_content(self, *args):
     global CELL_CONTENT
     CELL_CONTENT = cell_content.get()
 
+# onButton 
 def retrieveInputForTextFile():
     inputValue = inputFileTextBox.get("1.0", "end-1c")
     # Open file i/o
@@ -74,16 +73,6 @@ def retrieveInputForTextFile():
     print(inputValue) # Debugging/Printing to Console
     inputFileTextBox.delete(1.0, END) # Clear's TextBox Widget on Success
     fp.close() # Close the file i/o
-    
-def debugTextBoxGet():
-    inputValue = debugTextBox.get("1.0", "end-1c")
-    if inputValue == "google":
-        inputValue = "GOOGLE_SHEETS_FILENAME"
-    elif inputValue == "content":
-        inputValue = "CELL_CONTENT"
-    elif inputValue == "col":
-        inputValue = "CELL_COL"
-    print(globals()[inputValue])
 
 # Gspread Functions
 def makeChangesToSpreadsheet():
@@ -154,14 +143,6 @@ inputFileTextBox.pack()
 submitButton = ttk.Button(root, text='Submit Names', command= retrieveInputForTextFile)
 submitButton.pack()
 
-
-# ~DEBUG BUTTON~
-#ttk.Label(root, text="Test out a global variable:").pack()
-#debugTextBox = Text(root, height=1, width=10)
-#debugTextBox.pack()
-#debugButton = ttk.Button(root, text='DEBUG!', command= debugTextBoxGet)
-#debugButton.pack()
-
 ##startframe = Frame(root)
 #canvas = Canvas(root, width = 1000, height = 1000)
 #canvas.pack()
@@ -169,15 +150,12 @@ submitButton.pack()
 #canvas.create_image(20,20, anchor = NW, image = img)
 #PhotoImage(master = canvas, width = 20, height = 20)
 
-v = StringVar()
-v.set("L")
-
 
 # NICE MESSAGE AT BOTTOM
-w = Label(root, text="Thanks for using my application!")
+w = Label(root, text="Thanks for using my application! -Dennis")
 w.pack()
 
-
+# SUBMIT CHANGES TO GSPREADSHEET
 finalSubmissionButton = ttk.Button(root, text='Submit Changes!', command = makeChangesToSpreadsheet)
 finalSubmissionButton.pack()
 
