@@ -7,7 +7,10 @@ from tkinter import *
 from tkinter import ttk
 #from tkinter.filedialog import asksaveasfilename
 
-import re # Regular Expressions
+# Regular Expressions Libary
+import re
+
+# file flush
 import os 
 
 # My Libararies
@@ -29,10 +32,9 @@ client = gspread.authorize(creds)
 # Make sure you use the right name here.
 sheet = client.open(GOOGLE_SHEETS_FILENAME).sheet1
 
-### TKINTER
+### TKINTER Window
 root = Tk()
 root.title("UCI RCC Google Sheets Parser")
-
 
 # Erase input.txt File
 fp = open("input.txt", "r+")
@@ -64,6 +66,7 @@ def retrieveInputForTextFile():
         print("File to open does not exist!")
     fp.write(inputValue) # Write to input.txt file
     # fp.write("\n")
+
     # Commands for real-time updating input.txt file
     fp.flush()
     os.fsync(fp.fileno())
@@ -137,7 +140,6 @@ cell_col.trace_add("write", retrieve_cell_col)
 cell_col_entry = Entry(root, width = 8, textvariable = cell_col)
 cell_col_entry.pack()
 
-
 # CELL_CONTENT
 ttk.Label(root, text="How many points do you want to input:").pack()
 cell_content = StringVar()
@@ -170,9 +172,6 @@ submitButton.pack()
 v = StringVar()
 v.set("L")
 
-#finalButton = Radiobutton(master=root, text="Confirmed?", variable = v, value="Blah").pack()
-#outputTestButton = ttk.Button(root, text="Debug Output", command=myTk.globalValueTest(GOOGLE_SHEETS_FILENAME))
-#outputTestButton.pack()
 
 # NICE MESSAGE AT BOTTOM
 w = Label(root, text="Thanks for using my application!")
