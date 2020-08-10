@@ -33,4 +33,4 @@ Here is a sample of the current prototype of the application
 
 ## Notes
 
-<img src='rcc_logo_2020' title='RCC Logo' width='' alt='rcc_logo_2020-2021' />
+<img src='rcc_logo_2020.png' title='RCC Logo' width='' alt='rcc_logo_2020-2021' />
