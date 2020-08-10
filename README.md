@@ -33,5 +33,4 @@ Here is a sample of the current prototype of the application
 
 ## Notes
 
-Challenges
-* 
+<img src='rcc_logo_2020' title='RCC Logo' width='' alt='rcc_logo_2020-2021' />
