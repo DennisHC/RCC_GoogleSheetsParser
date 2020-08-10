@@ -32,5 +32,3 @@ Here is a sample of the current prototype of the application
 <img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## Notes
-
-<img src='rcc_logo_2020.png' title='RCC Logo' width='' alt='rcc_logo_2020-2021' />
