@@ -2,7 +2,7 @@
 Developing a program in Python utilizing gspread API to streamline/automate tasks for Secretary of American Red Cross Club at UCI
 
 # How the Application Works
-1. A UI launches when the program is run, prompting the user to enter in details such as the spreadsheet's name, which column to modify, and names of members that attended the meeting
+1. UI launches when the program is run, prompting the user to enter in details such as the spreadsheet's name, which column to modify, and names of members that attended the meeting
 2. The member names that the user enters into the textbox gets written to a text file called "input.txt"
 3. Once the text file has been created and the other fields have been filled, the user is able to submit the changes to their Google Spreadsheet
 4. The program parses the information and finds the correct cells on the spreadsheet and fills it with the user's defined value
