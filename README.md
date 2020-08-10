@@ -7,6 +7,10 @@ Developing a program in Python utilizing gspread API to streamline/automate task
 3. Once the text file has been created and the other fields have been filled, the user is able to submit the changes to their Google Spreadsheet
 4. The program parses the information and finds the correct cells on the spreadsheet and fills it with the user's defined value
 
+# Requirements
+1. Authenticating API on https://developers.google.com/
+2. secret_client.json file
+
 ## Progress
 
 The following **additional** features are in-progress:
