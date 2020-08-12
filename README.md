@@ -17,7 +17,6 @@ The following **additional** features are in-progress:
 
 * [  ] Provide an error message if the text file is empty
 * [  ] Change Text on Tkinter on successful submit
-* [  ] Use Column Letter instead of Column #
 
 The following bugs/planned implementation have been addressed:
 * [ x ] **FIXED** Try and catch needs to be implemented, and loop needs to continue going if name is not found
@@ -28,6 +27,7 @@ The following bugs/planned implementation have been addressed:
 * [ x ] Create an output file for redirecting errors
 * [ x ] Clear textbox when submitting names for input.txt
 * [ x ] onUpdate for textbox
+* [ x ] Use Column Letter instead of Column #
 
 ## Video Walkthrough
 

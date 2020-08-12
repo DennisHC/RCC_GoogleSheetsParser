@@ -47,9 +47,17 @@ def retrieve_spreadsheet_name(self, *args):
     GOOGLE_SHEETS_FILENAME = spreadsheet_name.get()
     print(GOOGLE_SHEETS_FILENAME)
 
+# New implementation: Inputting Letters
 def retrieve_cell_col(self, *args):
     global CELL_COL
-    CELL_COL = cell_col.get()
+    temp = cell_col.get()
+    temp = temp.upper()
+    result = 0
+
+    for i, T, in enumerate(temp[::-1]):
+        letterNumber = ord(T) - ord("A") + 1
+        result += letterNumber * (26 ** i)
+    CELL_COL = result
 
 def retrieve_cell_content(self, *args):
     global CELL_CONTENT
@@ -95,8 +103,9 @@ def makeChangesToSpreadsheet():
             print(name)
 
             print("Found something at R%s C%s" % (cell.row, cell.col))
-            print("Updating values B%s\n" % (cell.row))
+            # print("Updating values B%s\n" % (cell.row))
             # ex.) B1 -> (Column + Row)
+
             
             sheet.update_cell(cell.row, CELL_COL, CELL_CONTENT) # Update the value of the current cell
 
@@ -123,7 +132,7 @@ spreadsheet_name_entry = Entry(root, width = 50, textvariable = spreadsheet_name
 spreadsheet_name_entry.pack()
 
 # CELL_COL
-ttk.Label(root, text="Which column are we modifying?:").pack()
+ttk.Label(root, text="Which column are we modifying? (Enter a capital letter):").pack()
 cell_col = StringVar()
 cell_col.trace_add("write", retrieve_cell_col)
 cell_col_entry = Entry(root, width = 8, textvariable = cell_col)

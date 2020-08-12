@@ -1,10 +1,3 @@
-# ~DEBUG BUTTON~
-#ttk.Label(root, text="Test out a global variable:").pack()
-#debugTextBox = Text(root, height=1, width=10)
-#debugTextBox.pack()
-#debugButton = ttk.Button(root, text='DEBUG!', command= debugTextBoxGet)
-#debugButton.pack()
-
 def debugTextBoxGet():
     inputValue = debugTextBox.get("1.0", "end-1c")
     if inputValue == "google":
@@ -14,3 +7,11 @@ def debugTextBoxGet():
     elif inputValue == "col":
         inputValue = "CELL_COL"
     print(globals()[inputValue])
+
+
+# ~DEBUG BUTTON~
+ttk.Label(root, text="Test out a global variable:").pack()
+debugTextBox = Text(root, height=1, width=10)
+debugTextBox.pack()
+debugButton = ttk.Button(root, text='DEBUG!', command= debugTextBoxGet)
+debugButton.pack()
