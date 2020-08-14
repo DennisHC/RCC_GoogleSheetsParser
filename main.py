@@ -69,7 +69,8 @@ def retrieveInputForTextFile():
     try:
         fp = open("input.txt", "w")
     except:
-        print("File to open does not exist!")
+        # print("File to open does not exist!")
+        progress_message.set("Failed to open input.txt, file does not exist!")
     fp.write(inputValue) # Write to input.txt file
     # fp.write("\n")
 
@@ -77,7 +78,7 @@ def retrieveInputForTextFile():
     fp.flush()
     os.fsync(fp.fileno())
 
-    print(inputValue) # Debugging/Printing to Console
+    # print(inputValue) # Debugging/Printing to Console
     inputFileTextBox.delete(1.0, END) # Clear's TextBox Widget on Success
     fp.close() # Close the file i/o
 
@@ -119,9 +120,9 @@ def makeChangesToSpreadsheet():
         try:
             nameRegex = re.compile(name, re.IGNORECASE)
             cell = sheet.find(nameRegex)
-            print(name)
+            # print(name)
 
-            print("Found something at R%s C%s" % (cell.row, cell.col))
+            # print("Found something at R%s C%s" % (cell.row, cell.col))
             # print("Updating values B%s\n" % (cell.row))
             # ex.) B1 -> (Column + Row)
 
@@ -132,14 +133,14 @@ def makeChangesToSpreadsheet():
 
             name = fpr.readline().strip() # Continue iterating through file
         except:
-            print("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback
+            # print("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback
             fpErr.write("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback to error.txt
             errors += 1
             name = fpr.readline().strip() # Continue iterating through file
             continue # Skip back to beginning of loop
 
     # Updating entries_changed label    
-    print(entries_changed)
+    # print(entries_changed)
     if (entries_changed == 1):
         entries_changed_counter.set("%s cell has been updated." % (entries_changed))
     else:
@@ -152,14 +153,14 @@ def makeChangesToSpreadsheet():
         errors_occured_counter.set("%s errors have occured." % (errors))
 
     # Updating progress_message label
-    progress_message.set("Sucess!")
+    progress_message.set("Success!")
 
     # Close file i/o
     fpr.close()
     fpErr.close()
 
     # Print success message
-    print("input.txt file parsing completed")
+    # print("input.txt file parsing completed")
 
 
 # GOOGLE_SHEETS_FILENAME
@@ -227,4 +228,4 @@ try:
 except:
     pass
 
-print("Dennis' Google Sheets Parser has finished running successfully.")
+# print("Dennis' Google Sheets Parser has finished running successfully.")
