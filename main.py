@@ -85,7 +85,7 @@ def retrieveInputForTextFile():
 # Gspread Functions
 def makeChangesToSpreadsheet():
     # Edge cases
-    print(CELL_COL)
+
     # Should not overwrite member names
     if CELL_COL == 1:
         progress_message.set("Invalid option, cannot update cells that contain member names.")
