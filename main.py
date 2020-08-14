@@ -45,7 +45,6 @@ fp.close()
 def retrieve_spreadsheet_name(self, *args):
     global GOOGLE_SHEETS_FILENAME
     GOOGLE_SHEETS_FILENAME = spreadsheet_name.get()
-    print(GOOGLE_SHEETS_FILENAME)
 
 # New implementation: Inputting Letters
 def retrieve_cell_col(self, *args):
@@ -90,6 +89,14 @@ def makeChangesToSpreadsheet():
     if CELL_COL == 1:
         progress_message.set("Invalid option, cannot update cells that contain member names.")
         return
+
+    # Set Google Sheets
+    try:
+        sheet = client.open(GOOGLE_SHEETS_FILENAME).sheet1
+    except:
+        progress_message.set("Invalid Google Sheets Filename.")
+        return
+
 
     # Attempt to open input.txt File
     try:
@@ -143,6 +150,9 @@ def makeChangesToSpreadsheet():
         errors_occured_counter.set("%s error has occured." % (errors))
     else:
         errors_occured_counter.set("%s errors have occured." % (errors))
+
+    # Updating progress_message label
+    progress_message.set("Sucess!")
 
     # Close file i/o
     fpr.close()
