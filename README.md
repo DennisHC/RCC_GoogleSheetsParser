@@ -10,6 +10,7 @@ Developing a program in Python utilizing gspread API to streamline/automate task
 # Requirements
 1. Authenticating API on https://developers.google.com/
 2. secret_client.json file
+3. gspread & oauth2client libraries
 
 ## Progress
 
