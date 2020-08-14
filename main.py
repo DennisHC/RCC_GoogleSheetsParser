@@ -17,7 +17,7 @@ import os
 # import gspreadFunctions as myGSpread
 
 # Global Variables
-CELL_COL = 2
+CELL_COL = "B"
 CELL_CONTENT = "1"
 GOOGLE_SHEETS_FILENAME = "Google Sheets Parser Test"
 
@@ -84,6 +84,13 @@ def retrieveInputForTextFile():
 
 # Gspread Functions
 def makeChangesToSpreadsheet():
+    # Edge cases
+    print(CELL_COL)
+    # Should not overwrite member names
+    if CELL_COL == 1:
+        progress_message.set("Invalid option, cannot update cells that contain member names.")
+        return
+
     # Attempt to open input.txt File
     try:
         fpr = open("input.txt", "r")
@@ -96,6 +103,11 @@ def makeChangesToSpreadsheet():
         print("Failed to open error.txt")
 
     name = fpr.readline().strip()
+
+    # Variables to keep track of errors and progress
+    entries_changed = 0
+    errors = 0
+
     while name:
         try:
             nameRegex = re.compile(name, re.IGNORECASE)
@@ -109,13 +121,29 @@ def makeChangesToSpreadsheet():
             
             sheet.update_cell(cell.row, CELL_COL, CELL_CONTENT) # Update the value of the current cell
 
+            entries_changed += 1
+
             name = fpr.readline().strip() # Continue iterating through file
         except:
             print("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback
             fpErr.write("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback to error.txt
+            errors += 1
             name = fpr.readline().strip() # Continue iterating through file
             continue # Skip back to beginning of loop
+
+    # Updating entries_changed label    
+    print(entries_changed)
+    if (entries_changed == 1):
+        entries_changed_counter.set("%s cell has been updated." % (entries_changed))
+    else:
+        entries_changed_counter.set("%s cells have been updated." % (entries_changed))
     
+    # Updating errors_occurred label
+    if (errors == 1):
+        errors_occured_counter.set("%s error has occured." % (errors))
+    else:
+        errors_occured_counter.set("%s errors have occured." % (errors))
+
     # Close file i/o
     fpr.close()
     fpErr.close()
@@ -132,7 +160,7 @@ spreadsheet_name_entry = Entry(root, width = 50, textvariable = spreadsheet_name
 spreadsheet_name_entry.pack()
 
 # CELL_COL
-ttk.Label(root, text="Which column are we modifying? (Enter a capital letter):").pack()
+ttk.Label(root, text="Which column are we modifying? (Enter a letter):").pack()
 cell_col = StringVar()
 cell_col.trace_add("write", retrieve_cell_col)
 cell_col_entry = Entry(root, width = 8, textvariable = cell_col)
@@ -160,9 +188,23 @@ submitButton.pack()
 #PhotoImage(master = canvas, width = 20, height = 20)
 
 
-# NICE MESSAGE AT BOTTOM
-w = Label(root, text="Thanks for using my application! -Dennis")
-w.pack()
+# entries_changed message/label
+entries_changed_counter = StringVar()
+entries_changed_counter.set("0 cells have been updated so far.")
+entries_changed_label = Label(root, textvariable=entries_changed_counter)
+entries_changed_label.pack()
+
+# errors_occured message/label
+errors_occured_counter = StringVar()
+errors_occured_counter.set("0 errors have occured so far.") 
+errors_occured_label = Label(root, textvariable=errors_occured_counter)
+errors_occured_label.pack()
+
+# progress message
+progress_message = StringVar()
+progress_message.set("Thanks for using my application! -Dennis") 
+progress_message_label = Label(root, textvariable=progress_message)
+progress_message_label.pack()
 
 # SUBMIT CHANGES TO GSPREADSHEET
 finalSubmissionButton = ttk.Button(root, text='Submit Changes!', command = makeChangesToSpreadsheet)
