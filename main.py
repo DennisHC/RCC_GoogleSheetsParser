@@ -13,8 +13,7 @@ import re
 import os 
 
 # My Libararies
-# import tkinterFunctions as myTk
-# import gspreadFunctions as myGSpread
+
 
 # Global Variables
 CELL_COL = "B"
@@ -54,8 +53,8 @@ def retrieve_cell_col(self, *args):
     result = 0
 
     for i, T, in enumerate(temp[::-1]):
-        letterNumber = ord(T) - ord("A") + 1
-        result += letterNumber * (26 ** i)
+        letter_number = ord(T) - ord("A") + 1
+        result += letter_number * (26 ** i)
     CELL_COL = result
 
 def retrieve_cell_content(self, *args):
@@ -64,22 +63,22 @@ def retrieve_cell_content(self, *args):
 
 # onButton 
 def retrieveInputForTextFile():
-    inputValue = inputFileTextBox.get("1.0", "end-1c")
+    input_value = input_file_textbox.get("1.0", "end-1c")
     # Open file i/o
     try:
         fp = open("input.txt", "w")
     except:
         # print("File to open does not exist!")
         progress_message.set("Failed to open input.txt, file does not exist!")
-    fp.write(inputValue) # Write to input.txt file
+    fp.write(input_value) # Write to input.txt file
     # fp.write("\n")
 
     # Commands for real-time updating input.txt file
     fp.flush()
     os.fsync(fp.fileno())
 
-    # print(inputValue) # Debugging/Printing to Console
-    inputFileTextBox.delete(1.0, END) # Clear's TextBox Widget on Success
+    # print(input_value) # Debugging/Printing to Console
+    input_file_textbox.delete(1.0, END) # Clear's TextBox Widget on Success
     fp.close() # Close the file i/o
 
 # Gspread Functions
@@ -106,7 +105,7 @@ def makeChangesToSpreadsheet():
         print("File to open does not exist!")
     # Attempt to open error.txt File
     try:
-        fpErr = open("error.txt", "w")
+        fp_err = open("error.txt", "w")
     except:
         print("Failed to open error.txt")
 
@@ -118,8 +117,8 @@ def makeChangesToSpreadsheet():
 
     while name:
         try:
-            nameRegex = re.compile(name, re.IGNORECASE)
-            cell = sheet.find(nameRegex)
+            name_regex = re.compile(name, re.IGNORECASE)
+            cell = sheet.find(name_regex)
             # print(name)
 
             # print("Found something at R%s C%s" % (cell.row, cell.col))
@@ -134,7 +133,7 @@ def makeChangesToSpreadsheet():
             name = fpr.readline().strip() # Continue iterating through file
         except:
             # print("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback
-            fpErr.write("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback to error.txt
+            fp_err.write("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback to error.txt
             errors += 1
             name = fpr.readline().strip() # Continue iterating through file
             continue # Skip back to beginning of loop
@@ -157,39 +156,39 @@ def makeChangesToSpreadsheet():
 
     # Close file i/o
     fpr.close()
-    fpErr.close()
+    fp_err.close()
 
     # Print success message
     # print("input.txt file parsing completed")
 
 
 # GOOGLE_SHEETS_FILENAME
-ttk.Label(root, text="What is the spreadsheet name?:").pack()
+ttk.Label(root, text = "What is the spreadsheet name?:").pack()
 spreadsheet_name = StringVar()
 spreadsheet_name.trace_add("write", retrieve_spreadsheet_name)
 spreadsheet_name_entry = Entry(root, width = 50, textvariable = spreadsheet_name)
 spreadsheet_name_entry.pack()
 
 # CELL_COL
-ttk.Label(root, text="Which column are we modifying? (Enter a letter):").pack()
+ttk.Label(root, text = "Which column are we modifying? (Enter a letter):").pack()
 cell_col = StringVar()
 cell_col.trace_add("write", retrieve_cell_col)
 cell_col_entry = Entry(root, width = 8, textvariable = cell_col)
 cell_col_entry.pack()
 
 # CELL_CONTENT
-ttk.Label(root, text="How many points do you want to input:").pack()
+ttk.Label(root, text = "How many points do you want to input:").pack()
 cell_content = StringVar()
 cell_content.trace_add("write", retrieve_cell_content)
 cell_content_entry = Entry(root, width = 8, textvariable = cell_content)
 cell_content_entry.pack()
 
 # FULL NAMES TO ADD TO INPUT FILE
-ttk.Label(root, text="Please input names of members who attended this meeting:").pack()
-inputFileTextBox = Text(root, height=30, width=20)
-inputFileTextBox.pack()
-submitButton = ttk.Button(root, text='Submit Names', command= retrieveInputForTextFile)
-submitButton.pack()
+ttk.Label(root, text = "Please input names of members who attended this meeting:").pack()
+input_file_textbox = Text(root, height = 30, width = 20)
+input_file_textbox.pack()
+submit_button = ttk.Button(root, text = 'Submit Names', command = retrieveInputForTextFile)
+submit_button.pack()
 
 ##startframe = Frame(root)
 #canvas = Canvas(root, width = 1000, height = 1000)
@@ -202,24 +201,24 @@ submitButton.pack()
 # entries_changed message/label
 entries_changed_counter = StringVar()
 entries_changed_counter.set("0 cells have been updated so far.")
-entries_changed_label = Label(root, textvariable=entries_changed_counter)
+entries_changed_label = Label(root, textvariable = entries_changed_counter)
 entries_changed_label.pack()
 
 # errors_occured message/label
 errors_occured_counter = StringVar()
 errors_occured_counter.set("0 errors have occured so far.") 
-errors_occured_label = Label(root, textvariable=errors_occured_counter)
+errors_occured_label = Label(root, textvariable = errors_occured_counter)
 errors_occured_label.pack()
 
 # progress message
 progress_message = StringVar()
 progress_message.set("Thanks for using my application! -Dennis") 
-progress_message_label = Label(root, textvariable=progress_message)
+progress_message_label = Label(root, textvariable = progress_message)
 progress_message_label.pack()
 
 # SUBMIT CHANGES TO GSPREADSHEET
-finalSubmissionButton = ttk.Button(root, text='Submit Changes!', command = makeChangesToSpreadsheet)
-finalSubmissionButton.pack()
+final_submission_button = ttk.Button(root, text = 'Submit Changes!', command = makeChangesToSpreadsheet)
+final_submission_button.pack()
 
 root.mainloop()
 
