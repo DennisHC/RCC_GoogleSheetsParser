@@ -18,7 +18,7 @@ import os
 # Global Variables
 CELL_COL = "B"
 CELL_CONTENT = "1"
-GOOGLE_SHEETS_FILENAME = "Google Sheets Parser Test"
+GOOGLE_SHEETS_FILENAME = "20-21 Points Sheet Template"
 
 # use creds to create a client to interact with the Google Drive API
 scope = ['https://spreadsheets.google.com/feeds',
@@ -39,6 +39,11 @@ fp = open("input.txt", "w+")
 fp.seek(0)
 fp.truncate()
 fp.close()
+
+# cell_test = sheet.find("Alex")
+# print(cell_test.row)
+print(sheet.find('Anam'))
+
 
 # Tkinter Command Functions
 def retrieve_spreadsheet_name(self, *args):
