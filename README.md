@@ -18,7 +18,8 @@ Developing a program in Python utilizing gspread API to streamline/automate task
 
 The following **additional** features are in-progress:
 
-* [  ] Provide an error message if the text file is empty
+* [  ] Separate functions into different files
+* [  ] Polish GUI
 
 The following bugs/planned implementation have been addressed:
 * [ x ] **FIXED** Try and catch needs to be implemented, and loop needs to continue going if name is not found
@@ -31,6 +32,7 @@ The following bugs/planned implementation have been addressed:
 * [ x ] onUpdate for textbox
 * [ x ] Use Column Letter instead of Column #
 * [ x ] Change Text on Tkinter on successful submit
+* [ x ] Provide an error message if the text file is empty
 
 ## Video Walkthrough
 

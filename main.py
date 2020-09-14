@@ -5,6 +5,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # GUI Libraries
 from tkinter import *
 from tkinter import ttk
+from ttkthemes import ThemedStyle
 
 # Regular Expressions Libary
 import re
@@ -16,9 +17,9 @@ import os
 
 
 # Global Variables
-CELL_COL = "B"
+CELL_COL = "D"
 CELL_CONTENT = "1"
-GOOGLE_SHEETS_FILENAME = "20-21 Points Sheet Template"
+GOOGLE_SHEETS_FILENAME = "Copy of 20-21 Points Sheet Template (Color Change)"
 
 # use creds to create a client to interact with the Google Drive API
 scope = ['https://spreadsheets.google.com/feeds',
@@ -33,6 +34,8 @@ sheet = client.open(GOOGLE_SHEETS_FILENAME).sheet1
 # Initialize Tkinter GUI Window
 root = Tk()
 root.title("UCI RCC Google Sheets Parser")
+style = ThemedStyle(root)
+style.set_theme("clearlooks")
 
 # Clear/erase input.txt File
 fp = open("input.txt", "w+")
@@ -42,7 +45,7 @@ fp.close()
 
 # cell_test = sheet.find("Alex")
 # print(cell_test.row)
-print(sheet.find('Anam'))
+# print(sheet.find('Anam'))
 
 
 # Tkinter Command Functions
@@ -113,6 +116,10 @@ def makeChangesToSpreadsheet():
         fp_err = open("error.txt", "w")
     except:
         print("Failed to open error.txt")
+    
+    if os.stat("input.txt").st_size == 0:
+        progress_message.set("The input.txt file is empty! No changes were made.")
+        return
 
     name = fpr.readline().strip()
 
@@ -151,13 +158,18 @@ def makeChangesToSpreadsheet():
         entries_changed_counter.set("%s cells have been updated." % (entries_changed))
     
     # Updating errors_occurred label
-    if (errors == 1):
-        errors_occured_counter.set("%s error has occured." % (errors))
-    else:
+    if (errors == 0):
         errors_occured_counter.set("%s errors have occured." % (errors))
+    elif (errors == 1):
+        errors_occured_counter.set("%s error has occured.\nCheck the error.txt file for more information." % (errors))
+    else:
+        errors_occured_counter.set("%s errors have occured.\nCheck the error.txt file for more information." % (errors))
 
     # Updating progress_message label
-    progress_message.set("Success!")
+    if entries_changed > 0:
+        progress_message.set("Success!")
+        if errors > 0:
+            progress_message.set("Successfully inputted some cells, check error log.")
 
     # Close file i/o
     fpr.close()
