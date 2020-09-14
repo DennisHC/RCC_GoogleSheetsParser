@@ -43,11 +43,6 @@ fp.seek(0)
 fp.truncate()
 fp.close()
 
-# cell_test = sheet.find("Alex")
-# print(cell_test.row)
-# print(sheet.find('Anam'))
-
-
 # Tkinter Command Functions
 def retrieve_spreadsheet_name(self, *args):
     global GOOGLE_SHEETS_FILENAME
@@ -79,7 +74,6 @@ def retrieveInputForTextFile():
         # print("File to open does not exist!")
         progress_message.set("Failed to open input.txt, file does not exist!")
     fp.write(input_value) # Write to input.txt file
-    # fp.write("\n")
 
     # Commands for real-time updating input.txt file
     fp.flush()
@@ -131,13 +125,11 @@ def makeChangesToSpreadsheet():
         try:
             name_regex = re.compile(name, re.IGNORECASE)
             cell = sheet.find(name_regex)
-            # print(name)
 
             # print("Found something at R%s C%s" % (cell.row, cell.col))
             # print("Updating values B%s\n" % (cell.row))
             # ex.) B1 -> (Column + Row)
 
-            
             sheet.update_cell(cell.row, CELL_COL, CELL_CONTENT) # Update the value of the current cell
 
             entries_changed += 1
@@ -151,7 +143,6 @@ def makeChangesToSpreadsheet():
             continue # Skip back to beginning of loop
 
     # Updating entries_changed label    
-    # print(entries_changed)
     if (entries_changed == 1):
         entries_changed_counter.set("%s cell has been updated." % (entries_changed))
     else:
@@ -170,14 +161,12 @@ def makeChangesToSpreadsheet():
         progress_message.set("Success!")
         if errors > 0:
             progress_message.set("Successfully inputted some cells, check error log.")
+    elif entries_changed == 0:
+        progress_message.set("None of the cells changed, check error.txt!")
 
     # Close file i/o
     fpr.close()
     fp_err.close()
-
-    # Print success message
-    # print("input.txt file parsing completed")
-
 
 # GOOGLE_SHEETS_FILENAME
 ttk.Label(root, text = "What is the spreadsheet name?:").pack()
@@ -207,14 +196,6 @@ input_file_textbox.pack()
 submit_button = ttk.Button(root, text = 'Submit Names', command = retrieveInputForTextFile)
 submit_button.pack()
 
-##startframe = Frame(root)
-#canvas = Canvas(root, width = 1000, height = 1000)
-#canvas.pack()
-#img = PhotoImage(master = canvas, file="rcc_logo.png", width = 1000, height = 1000)
-#canvas.create_image(20,20, anchor = NW, image = img)
-#PhotoImage(master = canvas, width = 20, height = 20)
-
-
 # entries_changed message/label
 entries_changed_counter = StringVar()
 entries_changed_counter.set("0 cells have been updated so far.")
@@ -243,5 +224,3 @@ try:
     root.destroy()
 except:
     pass
-
-# print("Dennis' Google Sheets Parser has finished running successfully.")
