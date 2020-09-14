@@ -1,18 +1,19 @@
-def makeChangesToSpreadsheet():
-    name = fp.readline().strip()
-    while name:
-        try:
-            cell = sheet.find(name)
-            print(name)
-            print("Found something at R%s C%s" % (cell.row, cell.col))
-            print("Updating values B%s\n" % (cell.row))
+# Global Variables
+from config import CELL_COL, CELL_CONTENT, GOOGLE_SHEETS_FILENAME
 
-            sheet.update_cell(cell.row, CELL_COL, CELL_CONTENT) # Arg 2, 3 should be custom if possible
+def retrieve_spreadsheet_name(self, *args):
+    config.GOOGLE_SHEETS_FILENAME = spreadsheet_name.get()
 
-            name = fp.readline().strip() # Continue iterating through file
-        except:
-            print("FAILED TO COMPUTE FOR %s\n" % (name)) # Error Message for feedback to user (possibly put this into an output log)
-            name = fp.readline().strip() # Continue iterating through file
-            continue # Skip back to beginning of loop
+# New implementation: Inputting Letters
+def retrieve_cell_col(self, *args):
+    temp = cell_col.get()
+    temp = temp.upper()
+    result = 0
 
-    print("input.txt file parsing completed")
+    for i, T, in enumerate(temp[::-1]):
+        letter_number = ord(T) - ord("A") + 1
+        result += letter_number * (26 ** i)
+    config.CELL_COL = result
+
+def retrieve_cell_content(self, *args):
+    config.CELL_CONTENT = cell_content.get()
