@@ -10,8 +10,8 @@ def debugTextBoxGet():
 
 
 # ~DEBUG BUTTON~
-ttk.Label(root, text="Test out a global variable:").pack()
-debugTextBox = Text(root, height=1, width=10)
+ttk.Label(Frame, text="Test out a global variable:").pack()
+debugTextBox = Text(Frame, height=1, width=10)
 debugTextBox.pack()
-debugButton = ttk.Button(root, text='DEBUG!', command= debugTextBoxGet)
+debugButton = ttk.Button(Frame, text='DEBUG!', command= debugTextBoxGet)
 debugButton.pack()
