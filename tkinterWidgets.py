@@ -14,8 +14,6 @@ import config
 # My Modules 
 import fileIO as fio
 
-
-
 class MakeUI(Frame):
     def __init__(self, Frame, **kwargs):
         # onButton   
