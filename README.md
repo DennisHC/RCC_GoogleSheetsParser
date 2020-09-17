@@ -40,5 +40,3 @@ Here is a sample of the current prototype of the application
 <img src='media/app_walkthrough.gif' title='App Walkthrough' width='' alt='App Walkthrough' />
 
 <img src='media/sheets_walkthrough2.gif' title='Google Sheets Walkthrough' width='' alt='Google Sheets Walkthrough' />
-
-## Notes
