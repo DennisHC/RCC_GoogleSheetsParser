@@ -18,8 +18,7 @@ Developing a program in Python utilizing gspread API to streamline/automate task
 
 The following **additional** features are in-progress:
 
-* [  ] Separate functions into different files
-* [  ] Polish GUI
+N/A
 
 The following bugs/planned implementation have been addressed:
 * [ x ] **FIXED** Try and catch needs to be implemented, and loop needs to continue going if name is not found
