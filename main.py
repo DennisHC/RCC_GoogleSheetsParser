@@ -25,7 +25,7 @@ fileIO.clear_file("input.txt")
 
 # Create UI
 my_tk_widgets.MakeUI(Frame)
-Frame.iconphoto(False, PhotoImage(file='rcc_logo.png'))
+Frame.iconbitmap('media/rcc_logo.ico')
 
 Frame.mainloop()
 

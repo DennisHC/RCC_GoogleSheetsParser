@@ -38,6 +38,8 @@ The following bugs/planned implementation have been addressed:
 
 Here is a sample of the current prototype of the application
 
-<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='media/app_walkthrough.gif' title='App Walkthrough' width='' alt='App Walkthrough' />
+
+<img src='media/sheets_walkthrough.gif' title='Google Sheets Walkthrough' width='' alt='Google Sheets Walkthrough' />
 
 ## Notes
