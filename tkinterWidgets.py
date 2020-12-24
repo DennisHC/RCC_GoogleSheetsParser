@@ -161,7 +161,7 @@ class MakeUI(Frame):
 
         # FULL NAMES TO ADD TO INPUT FILE
         ttk.Label(Frame, text = "Please input names of members who attended this meeting:").pack()
-        input_file_textbox = Text(Frame, height = 30, width = 20)
+        input_file_textbox = Text(Frame, height = 20, width = 20)
         input_file_textbox.pack()
         submit_button = ttk.Button(Frame, text = 'Submit Names', command = retrieveInputForTextFile)
         submit_button.pack()
