@@ -19,7 +19,6 @@ Developing a program in Python utilizing gspread API to streamline/automate task
 pip install gspread
 pip install oauth2client
 pip install ttkthemes
-
 ```
 
 # Command to Create an Executable File
