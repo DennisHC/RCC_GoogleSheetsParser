@@ -10,9 +10,23 @@ Developing a program in Python utilizing gspread API to streamline/automate task
 # Requirements
 1. Authenticating API on https://developers.google.com/
 2. secret_client.json file
-3. gspread & oauth2client libraries
+3. gspread, oauth2client, and ttkthemes libraries
 4. input.txt file
 5. output.txt file
+
+# Installing the Libraries Required
+```
+pip install gspread
+pip install oauth2client
+pip install ttkthemes
+
+```
+
+# Command to Create an Executable File
+```
+pip install pyinstaller
+pyinstaller.exe --icon=media/rcc_logo.ico -w --clean --onefile main.py config.py fileIO.py tkinterWidgets.py client_secret.json
+```
 
 ## Progress
 
