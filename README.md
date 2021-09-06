@@ -12,6 +12,9 @@ Developing a program in Python utilizing gspread API to streamline/automate task
 2. secret_client.json file
 3. gspread, oauth2client, and ttkthemes libraries
 
+# Guide to Give Program Read/Write Access to Google Spreadsheet(s)
+https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html
+
 # Installing the Libraries Required
 ```
 pip install gspread
