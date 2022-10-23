@@ -9,10 +9,11 @@ This is a Python script utilizing gspread API to streamline/automate tasks for t
 
 # Requirements
 1. Authenticating API on https://developers.google.com/
-2. secret_client.json file
+2. client_secret.json file
 3. gspread, oauth2client, and ttkthemes libraries
 4. [Python](https://www.python.org/downloads/)
 5. [Visual Studio Code](https://code.visualstudio.com/)
+6. Add the Google Cloud API user to the Google Spreadsheet for visibility
 
 # Guide to Give Program Read/Write Access to Google Spreadsheet(s)
 https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html
