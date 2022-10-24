@@ -13,11 +13,12 @@ import re
 # File Flush
 import os 
 
-# My Libararies
-
+# Other libraries
+from datetime import datetime
 
 # Global Variables
 CELL_COL = "D"
+CELL_COL_LETTER = "D"
 CELL_CONTENT = "1"
 GOOGLE_SHEETS_FILENAME = "Project Test 1"
 
@@ -51,11 +52,12 @@ def retrieve_spreadsheet_name(self, *args):
 # New implementation: Inputting Letters
 def retrieve_cell_col(self, *args):
     global CELL_COL
-    temp = cell_col.get()
-    temp = temp.upper()
+    global CELL_COL_LETTER # Audit Trail Implementation
+    CELL_COL_LETTER = cell_col.get()
+    CELL_COL_LETTER = CELL_COL_LETTER.upper()
     result = 0
 
-    for i, T, in enumerate(temp[::-1]):
+    for i, T, in enumerate(CELL_COL_LETTER[::-1]):
         letter_number = ord(T) - ord("A") + 1
         result += letter_number * (26 ** i)
     CELL_COL = result
@@ -105,9 +107,16 @@ def makeChangesToSpreadsheet():
         fpr = open("input.txt", "r")
     except:
         print("File to open does not exist!")
+    
     # Attempt to open error.txt File
     try:
-        fp_err = open("error.txt", "w")
+        fp_err = open("error.txt", "a")
+    except:
+        print("Failed to open error.txt")
+
+    # Attempt to open audit_log.txt File
+    try:
+        fp_audit_log = open("audit_log.txt", "a")
     except:
         print("Failed to open error.txt")
     
@@ -115,14 +124,24 @@ def makeChangesToSpreadsheet():
         progress_message.set("The input.txt file is empty! No changes were made.")
         return
 
-    name = fpr.readline().strip()
+    names = fpr.readlines()
 
     # Variables to keep track of errors and progress
     entries_changed = 0
     errors = 0
 
-    while name:
+    # Retrieve current date
+    now = datetime.now()
+    current_time = now.strftime("%m/%d/%Y %H:%M:%S")
+
+    fp_audit_log.write("\n------------------------------------\n")
+    fp_audit_log.write(current_time)
+    fp_audit_log.write(f"\n[{CELL_CONTENT}] points assigned for these members")
+    fp_audit_log.write("\n------------------------------------\n")
+
+    for name in names:
         try:
+            name = name.strip() # Remove trailing characters
             name_regex = re.compile(name, re.IGNORECASE)
             cell = sheet.find(name_regex)
 
@@ -134,10 +153,12 @@ def makeChangesToSpreadsheet():
 
             entries_changed += 1
 
-            name = fpr.readline().strip() # Continue iterating through file
+            # Write to audit log
+            fp_audit_log.write(f"{CELL_COL_LETTER}{cell.row} --- {name}\n")
+
         except:
             # print("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback
-            fp_err.write("FAILED TO COMPUTE FOR: %s\n" % (name)) # Error Message for feedback to error.txt
+            fp_err.write(f"FAILED TO COMPUTE FOR: {name}\n at {current_time}\n") # Error Message for feedback to error.txt
             errors += 1
             name = fpr.readline().strip() # Continue iterating through file
             continue # Skip back to beginning of loop
