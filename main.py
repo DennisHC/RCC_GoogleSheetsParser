@@ -110,13 +110,13 @@ def makeChangesToSpreadsheet():
     
     # Attempt to open error.txt File
     try:
-        fp_err = open("error.txt", "a")
+        fp_err = open("audit/error.txt", "a")
     except:
         print("Failed to open error.txt")
 
     # Attempt to open audit_log.txt File
     try:
-        fp_audit_log = open("audit_log.txt", "a")
+        fp_audit_log = open("audit/audit_log.txt", "a")
     except:
         print("Failed to open error.txt")
     
