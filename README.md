@@ -1,5 +1,10 @@
 # RCC_GoogleSheetsParser
-This is a Python script utilizing gspread API to streamline/automate tasks for the Secretary of the American Red Cross Club at UCI. This program was developed in 2020, where it was utilized during the 2020-2021 year saving hours of time per use. Currently, this program is being used by the new Secretary of the American Red Cross Club at UCI of 2021-2022 and will be intended for continued use for future board members.
+This is a Python script utilizing gspread API to streamline/automate tasks for the Secretary of the American Red Cross Club at UCI. This program was developed in 2020, where it was utilized during the 2020-2021 year saving hours of time per use. Currently, this program is being used by the new Secretary of the American Red Cross Club at UCI of 2022-2023 and will be intended for continued use for future board members.
+
+# Years this Program Has Been Used in the American Red Cross Club at UCI:
+1. 2020-2021
+2. 2021-2022
+3. 2022-2023
 
 # How the Application Works
 1. UI launches when the program is run, prompting the user to enter in details such as the Google spreadsheet's name, which column to modify in the spreadsheet, and names of members that attended the meeting
